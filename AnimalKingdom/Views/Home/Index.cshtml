@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Loomade kuningriik";
+}
+<div class="row" ng-controller="AnimalController">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-2 navbar-brand" ng-repeat="header in headerFields" ng-bind="header"></div>
+        </div>
+        <form name="animalForm_{{$index}}" class="row" ng-repeat="animal in animals track by $index">
+            <select class="col-md-2" ng-model="animal.SpeciesId" ng-options="specie.SpeciesId as specie.Name for specie in species" placeholder="Vali liik">
+                <option value="">Vali looma liik</option>
+            </select>
+            <input class="col-md-2" type="text" name="myInput" ng-model="animal.Name" required />
+            <input class="col-md-2" type="number" ng-model="animal.BirthYear" ng-change="changeBirthYear(animal)" required />
+            <div class="col-md-2" ng-bind="animal.Age"></div>
+            <div class="col-md-2" ng-bind="animal.Created | date :'dd.MM.yyyy'"></div>
+            <input type="submit" class="btn btn-primary" ng-click="saveAnimal(animal, this['animalForm_' + $index].$valid)" value="Salvesta loom">
+            <div class="btn btn-warning" ng-click="deleteAnimal(animal.AnimalId)">Kustuta</div>
+        </form>
+        <div class="btn btn-primary" ng-click="addNewAnimal()">Lisa uus loom</div>
+        <div ng-show="errorMessage!=''" style="color:red"><h1>Viga: {{errorMessage}}</h1></div>
+        <div ng-show="showSuccess" style="color:green"><h1>{{successMessage}}</h1></div>
+        <div ng-show="animals.length > 0">Kõikide loomade keskmine vanus: {{animals | average:'Age'}} </div>
+    </div>
+</div>
