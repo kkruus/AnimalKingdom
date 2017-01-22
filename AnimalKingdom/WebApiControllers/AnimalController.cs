@@ -72,7 +72,7 @@ namespace AnimalKingdom.WebApiControllers
                 else
                 {
                     updateAnimal.Name = animal.Name;
-                    updateAnimal.Species = animal.Species;
+                    updateAnimal.SpeciesId = animal.SpeciesId;
                     updateAnimal.BirthYear = animal.BirthYear;
                 }
                 context.SaveChanges();

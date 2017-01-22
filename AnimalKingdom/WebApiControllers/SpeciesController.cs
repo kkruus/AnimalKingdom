@@ -9,7 +9,7 @@ namespace AnimalKingdom.WebApiControllers
     public class SpeciesController : ApiController
     {
         [HttpGet]
-        public IHttpActionResult GetAnimals()
+        public IHttpActionResult GetSpecies()
         {
             using (var context = new AnimalContext())
             {
